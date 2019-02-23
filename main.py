@@ -14,6 +14,11 @@
 
 import bookshelf
 import config
+import os
+from google.cloud import translate
+
+credential_path = "C:\Users\danie\hackvalley\appraise-me-7c169997506a.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = crendential_path
 
 
 app = bookshelf.create_app(config)
