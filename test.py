@@ -2,14 +2,15 @@ import io
 import os
 import requests
 from bs4 import BeautifulSoup
+from usda import UsdaClient
 
 # Imports the Google Cloud client library
 from google.cloud import vision
 from google.cloud.vision import types
+from nutritionix import Nutritionix
 
 # Import wikipedia library for getting the description
 import wikipedia
-import json
 
 # Instantiates a client
 client = vision.ImageAnnotatorClient()
@@ -36,17 +37,15 @@ for label in labels:
 # Let the user choose what label best fits
 chosenLabel = input("Which label do you choose? ")
 for label in labels:
-	if label.description == chosenLabel:
-		# Scrape description from Wikipedia
-		print ("\nDescription: ")
-		print (wikipedia.summary(chosenLabel, sentences=3))
+    if label.description == chosenLabel:
+        # Scrape description from Wikipedia
+        print ("\nDescription: ")
+        print (wikipedia.summary(chosenLabel, sentences=3))
 
-		# Scrape price from Walmart
-		URL = "https://www.walmart.ca/search/banana/N-117"
-		page = requests.get(URL,headers={"User-Agent":"Defined"})
-		json = page.json()
-
-		soup = BeautifulSoup(page.content, "html.parser")
-		price = json
-		#price = soup.find(class_="price-current width-adjusted").get_text()
-		print(price)
+        # Scrape nutrition data
+        nix = Nutritionix(app_id="149637d3", api_key="db3b7737e2bb69592a78ddea290e1704")
+        apple = nix.search("chicken")
+        results = apple.json()
+        resultsItem = nix.item(id=results['hits'][0]['fields']['item_id']).json()
+        print("Calories: " + str(resultsItem['nf_calories']))
+        print("Serving Weight: " + str(resultsItem['nf_serving_weight_grams']) + "g")

@@ -9,3 +9,4 @@ PyMongo==3.7.2
 six==1.11.0
 google-cloud-vision==0.35.2
 wikipedia==1.4.0
+nutritionix==0.2
