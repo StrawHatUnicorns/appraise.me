@@ -5,23 +5,18 @@
   <div class="card mt-5 col-md-4 animated bounceInDown myForm" style="background-color:#F5F5F5;">
 <br>
   <div class="card-header">
-      <h4 style="font-family: Verdana; text-align:center"> Appraise this</h4>
+      <h4 style="font-family: Verdana; text-align:center"> Appraise Here</h4>
   </div>
     <div class="card-body">
     <div class="card-body">
-      <form action="https://pacific-fortress-20326.herokuapp.com/request" method="post">
-        <div id="dynamic_container">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <button class="btn btn-outline-secondary" type="button">Upload</button>
-            </div>
-            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
-          </div>
-    </div>
-    <div class="card-footer">
-      <button style="font-family: Verdana;" class="button button4"><i class="fas fa-arrow-alt-circle-right"></i> Submit</button>
-    </div>
-    </form>
+
+      <form id="upload-form" method = "POST" enctype=multipart/form-data>
+        <div class="form-group">
+          <label for="exampleFormControlFile1">Example file input</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+        <button type="submit" style="font-family: Verdana;" class="button button4"><i class="fas fa-arrow-alt-circle-right"></i> Submit</button>
+      </form>
   </div>
 </div>
 

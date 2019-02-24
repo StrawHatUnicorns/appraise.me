@@ -51,7 +51,6 @@
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  align-self: center;
 }
 .button4 {
   border-radius: 4px;
@@ -59,4 +58,8 @@
 
 .card-footer {
   align-content: center;
+}
+
+.card-body{
+  align-content: flex-end;
 }

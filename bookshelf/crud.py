@@ -11,17 +11,31 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+import os
 from bookshelf import get_model
-from flask import Blueprint, redirect, render_template, request, url_for
+from flask import Flask, Blueprint, redirect, render_template, request, url_for, send_from_directory
+from werkzeug.utils import secure_filename
 
 
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 crud = Blueprint('crud', __name__)
-
 
 # [START list]
 @crud.route("/")
-def list():
+def index():
     return render_template("app_body.html", title = "Home")
 
-# [END list]
+@crud.route('/', methods = ['GET','POST'])
+def upload():
+    target = os.path.join(APP_ROOT,'images/')
+    print(target)
+
+    if not os.path.isdir(target):
+        os.mkdir(target)
+    for file in request.files.getlist("file"):
+        print(file)
+        filename = file.filename
+        destination = "./".join([target,filename])
+        print(destination)
+        file.save(destination)
+    return render_template("app_body.html", title = "Home")
