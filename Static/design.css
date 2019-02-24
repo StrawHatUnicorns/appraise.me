@@ -1,0 +1,65 @@
+.logo {
+  width: 300px;
+  height: 150px;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #282828;
+  color: white;
+  text-align: center;
+  size: 1;
+}
+ .screenshot {
+      width: 99px;
+    }
+  body {
+      overflow: hidden;
+ }
+.header {
+  padding: 10px 16px;
+  background: white;
+  color: #ffffff;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+.sticky + .content {
+  padding-top: 102px;
+}
+
+.color{
+  colour="#B600CD";
+}
+.button {
+  background-color: #54B29D;
+  border: none;
+  color: black;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button4 {
+  border-radius: 4px;
+}
+
+.card-footer {
+  align-content: center;
+}
+
+.card-body{
+  align-content: flex-end;
+}
