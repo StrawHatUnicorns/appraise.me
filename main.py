@@ -8,7 +8,7 @@ from nutritionix import Nutritionix
 # Import wikipedia library for getting the description
 import wikipedia
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"C:\Users\danie\hackvalley\appraise-me-7c169997506a.json"
+# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"C:\Users\danie\hackvalley\appraise-me-7c169997506a.json"
 
 app = Flask(__name__)
 
