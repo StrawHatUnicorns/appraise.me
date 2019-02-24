@@ -22,11 +22,11 @@ def upload():
     for file in request.files.getlist("file"):
         print(file)
         filename = file.filename
-        destination = "/".join([target, filename])
+        destination = "/".join([target, "temp.jpg"])
         print(destination)
         file.save(destination)
 
-    return render_template("complete.html")
+    return render_template("app_body.html")
 
 if __name__ == "__main__":
     app.run(port=4555, debug=True)
