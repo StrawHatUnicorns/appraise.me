@@ -1,4 +1,4 @@
-# Copyright 2015 Google Inc.
+# Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,17 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import bookshelf
-import config
-import os
-
-credential_path = r"C:\Users\danie\hackvalley\appraise-me-7c169997506a.json"
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
-
-app = bookshelf.create_app(config)
+# [START gae_python37_app]
+from flask import Flask
 
 
-# This is only used when running locally. When running live, gunicorn runs
-# the application.
+# If `entrypoint` is not defined in app.yaml, App Engine will look for an app
+# called `app` in `main.py`.
+app = Flask(__name__)
+
+
+@app.route('/')
+def hello():
+    """Return a friendly HTTP greeting."""
+    return 'Hello World!'
+
+
 if __name__ == '__main__':
+    # This is used when running locally only. When deploying to Google App
+    # Engine, a webserver process such as Gunicorn will serve the app. This
+    # can be configured by adding an `entrypoint` to app.yaml.
     app.run(host='127.0.0.1', port=8080, debug=True)
+# [END gae_python37_app]
