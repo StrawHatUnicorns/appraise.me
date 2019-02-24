@@ -1,0 +1,19 @@
+{% extends "upload.html"%}
+{% block body_content %}
+<div class="container h-100">
+  <div class="d-flex justify-content-center">
+    <div class="card mt-5 col-md-4 animated bounceInDown myForm" style="background-color:#F5F5F5;">
+      <br>
+      <p>{{pic}}</p>
+      <span class="promt">Choose which one of these options best represents the object...</span>
+      <form class= "wrap" action="{{ url_for('result') }}" method="POST">
+        {%for label in labels[0:3] %}
+        <p class="labels"> <input type="submit" name="out" value="{{ label.description }}" class="lab"></p>
+        {% endfor %}
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{%endblock%}

@@ -8,6 +8,8 @@ from nutritionix import Nutritionix
 # Import wikipedia library for getting the description
 import wikipedia
 
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"C:\Users\danie\hackvalley\appraise-me-7c169997506a.json"
+
 app = Flask(__name__)
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -19,49 +21,29 @@ def index():
 @app.route("/upload", methods=['POST'])
 def upload():
     client = vision.ImageAnnotatorClient()
-    target = os.path.join(APP_ROOT, 'images/')
-    print(target)
-
-    if not os.path.isdir(target):
-        os.mkdir(target)
 
     if request.files['file']:
         file = request.files['file']
-        destination = "/".join([target, "temp.jpg"])
-        file.save(destination)
-
-    file_name = "/".join([target, "temp.jpg"])
-
     # Loads the image into memory
-    with io.open(file_name, 'rb') as image_file:
-        content = image_file.read()
+        content = file.read()
+        image = types.Image(content=content)
+        # Performs label detection on the image file
+        response = client.label_detection(image=image)
+        labels = response.label_annotations
 
-    image = types.Image(content=content)
-
-    # Performs label detection on the image file
-    response = client.label_detection(image=image)
-    labels = response.label_annotations
-
-    print('Labels:')
-    for label in labels:
-        print(label.description + " " + str(label.score))
-
-    # Let the user choose what label best fits
-    chosenLabel = input("Which label do you choose? ")
-    for label in labels:
-        if label.description == chosenLabel:
-            # Scrape description from Wikipedia
+        return render_template('app_select.html', labels = labels)
 
 
-            # Scrape nutrition data
-            nix = Nutritionix(app_id="149637d3", api_key="db3b7737e2bb69592a78ddea290e1704")
-            apple = nix.search(chosenLabel)
-            results = apple.json()
-            resultsItem = nix.item(id=results['hits'][0]['fields']['item_id']).json()
-            return "Description: " + wikipedia.summary(chosenLabel, sentences=3) + "<br/>" + \
-                                        "Calories: " + str(resultsItem['nf_calories']) + "kcal" + "<br/>" + \
-                            "Serving Weight: " + str(resultsItem['nf_serving_weight_grams']) + "g"
-    #return render_template("app_body.html")
+@app.route("/result", methods=['Get','POST'])
+def result():
+        print(request.form['out'])
+        chosenLabel= request.form['out']
+        nix = Nutritionix(app_id="149637d3", api_key="db3b7737e2bb69592a78ddea290e1704")
+        apple = nix.search(chosenLabel)
+        results = apple.json()
+        resultsItem = nix.item(id=results['hits'][0]['fields']['item_id']).json()
+        return render_template('description.html', sum = wikipedia.summary(chosenLabel, sentences=3), calories = str(resultsItem['nf_calories']), serving =str(resultsItem['nf_serving_weight_grams']))
+
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)
