@@ -44,7 +44,7 @@ for label in labels:
 
         # Scrape nutrition data
         nix = Nutritionix(app_id="149637d3", api_key="db3b7737e2bb69592a78ddea290e1704")
-        apple = nix.search("chicken")
+        apple = nix.search(chosenLabel)
         results = apple.json()
         resultsItem = nix.item(id=results['hits'][0]['fields']['item_id']).json()
         print("Calories: " + str(resultsItem['nf_calories']))
