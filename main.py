@@ -59,7 +59,7 @@ def upload():
             results = apple.json()
             resultsItem = nix.item(id=results['hits'][0]['fields']['item_id']).json()
             return "Description: " + wikipedia.summary(chosenLabel, sentences=3) + "<br/>" + \
-                                        "Calories: " + str(resultsItem['nf_calories']) + "<br/>" + \
+                                        "Calories: " + str(resultsItem['nf_calories']) + "kcal" + "<br/>" + \
                             "Serving Weight: " + str(resultsItem['nf_serving_weight_grams']) + "g"
     #return render_template("app_body.html")
 
