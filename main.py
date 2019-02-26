@@ -38,7 +38,7 @@ def upload():
 def result():
         print(request.form['out'])
         chosenLabel= request.form['out']
-        nix = Nutritionix(app_id="149637d3", api_key="db3b7737e2bb69592a78ddea290e1704")
+        nix = Nutritionix(app_id="b3151f58", api_key="f9c4b99b77d236006962c81e4ddbffee")
         apple = nix.search(chosenLabel)
         results = apple.json()
         resultsItem = nix.item(id=results['hits'][0]['fields']['item_id']).json()
