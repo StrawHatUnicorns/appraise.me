@@ -1,6 +1,6 @@
 # appraise.me
 
-A simple web application that allows you to easily appraise item (currently food/produce) using image recognition. Made using Python 3.7, Flask, Nutritionix, MediaWiki, and Google Cloud Vision APIs. Hosted using Googe Cloud App Engine.
+A simple web application that allows you to easily appraise item (currently food/produce) using image recognition. Made using Python 3.7, Flask, Nutritionix, MediaWiki, and Google Cloud Vision APIs. Hosted using Google Cloud App Engine.
 
 <img src="https://i.imgur.com/k7xXrSV.jpg">
 
