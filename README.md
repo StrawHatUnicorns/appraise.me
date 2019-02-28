@@ -6,11 +6,11 @@ A simple web application that allows you to easily appraise item (currently food
 
 ## Development Setup
 
-1. Fork this repository
+1. Clone this repository
 
 2. Run ``` python main.py ```
 
-3. Go to localhost:8080 on your web browser
+3. Go to [localhost:8080](localhost:8080) on your web browser
 
 ## Credit
 
